@@ -1,0 +1,43 @@
+<
+<a href="/">д</a>
+<h1>
+	Медік - <small>medic</small>
+</h1>
+<ul>
+	<li>Практикуючий лікар / амбулаторія - <a href="/v/praxis">
+			praxis</a></li>
+	<li>Лікарня - <a href="/v/spital"> spital</a></li>
+</ul>
+
+<div class="row">
+	<div class="col-xs-7 col-sm-6 col-lg-8">
+		<fieldset>
+			<legend>Новий паціент:</legend>
+			<label>ПІБ: <input type="text" ng-model="patient.patient_pib" />
+			</label> <label>Адреса: <input type="text" ng-model="patient.patient_address" />
+			</label>
+			<button ng-click="saveNewPatient(patient)">OK</button>
+		</fieldset>
+	</div>
+	<div class="col-xs-5 col-sm-6 col-lg-4">
+		<fieldset>
+			<legend>Інфо:</legend>
+		</fieldset>
+	</div>
+</div>
+
+
+<div>{{historyTreatmentAnalysis.date}}</div>
+<span> <label>дата: <input type="text"
+		style="width: 100px;" ui-date="dateOptions"
+		ng-model="historyTreatmentAnalysis.date"
+		ng-change="ddmmyyChange(historyTreatmentAnalysis)" />
+</label> <input type="number" min="0" max="23" size="2" maxlength="2"
+	style="width: 50px;" ng-model="historyTreatmentAnalysis.hh"
+	ng-change="hhChange(historyTreatmentAnalysis)" />: <input
+	type="number" min="0" max="59" step="5" size="2" maxlength="2"
+	style="width: 50px;" ng-model="historyTreatmentAnalysis.mm"
+	ng-change="mmChange(historyTreatmentAnalysis)" />
+</span>
+
+<div ng-include="'/v/mvp1/cc.html'"></div>

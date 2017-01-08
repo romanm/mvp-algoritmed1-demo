@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" />
+<script type="text/javascript"
+	src="/webjars/angularjs/1.6.0/angular.min.js"></script>
+</head>
+<body>
+	<h1>
+		МОЗ "eHealth MVP" - пропозиція від АЛГОРИТМЕД <br />
+		<small>mvp-algoritmed1-demo</small>
+	</h1>
+	<ul>
+		<li>Медік - <a href="/v/medic"> medic </a></li>
+		<li>Обстеження - <a href="/v/finding"> finding</a></li>
+		<li>Державна гарантована мед.стаховка - <a href="/v/insuranceall">
+				insuranceall</a></li>
+		<li>Медичні документи - <a href="/v/meddoc"> meddoc</a></li>
+		<li>Аптека - <a href="/v/apotheke"> apotheke</a></li>
+		<li>Пацієнт - <a href="/v/patient"> patient</a></li>
+	</ul>
+	<div ng-include="'/v/mvp1/cc.html'"></div>
+</body>
+</html>

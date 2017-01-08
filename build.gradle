@@ -1,0 +1,49 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.3.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+jar {
+	baseName = 'mvp-algoritmed1-demo'
+	version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-security')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+	compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	compile 'org.springframework:spring-jdbc'
+	compile 'org.postgresql:postgresql'
+	compile 'commons-dbcp:commons-dbcp'
+
+	compile 'org.webjars:bootstrap:4.0.0-alpha.5'
+	compile 'org.webjars.bower:tether:1.4.0'
+	compile 'org.webjars:angularjs:1.6.0'
+	compile 'org.webjars:jquery:3.1.1-1'
+	compile 'org.webjars.bower:jquery-ui:1.12.1'
+	//compile 'org.webjars.npm:jquery-ui:1.12.1'
+	compile 'org.webjars.bower:js-angular-datepicker:2.1.3'
+
+}
+
