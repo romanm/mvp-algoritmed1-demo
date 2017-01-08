@@ -26,7 +26,19 @@
 	</div>
 </div>
 
+<h2>Список пацієнтів</h2>
+<table class="table">
+	<tr>
+		<th>ПІБ</th>
+		<th>Адреса</th>
+	</tr>
+	<tr ng-repeat="p in medicPatients">
+		<td>{{p.patient_pib}}</td>
+		<td>{{p.patient_address}}</td>
+	</tr>
+</table>
 
+<h2>---------</h2>
 <div>{{historyTreatmentAnalysis.date}}</div>
 <span> <label>дата: <input type="text"
 		style="width: 100px;" ui-date="dateOptions"

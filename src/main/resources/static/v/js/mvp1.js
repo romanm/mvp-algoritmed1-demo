@@ -3,6 +3,15 @@ angular.module('medicApp', [])
 	console.log('---medicApp-----MedicCtrl--------');
 	$scope.patient = {'patient_pib':'','patient_address':''};
 
+	$http.get('/r/patients').then(
+			function(response) {
+				console.log(response);
+				$scope.medicPatients = response.data.medicPatients;
+			}
+			, function(response) {
+				console.log(response);
+			}
+	);
 	/*
 	 * Запис пацієнта в БД
 	 * */
