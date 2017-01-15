@@ -31,8 +31,8 @@ public class Mvp1Db {
 		Integer nextDbId = nextDbId();
 		map.put("nextDbId", nextDbId);
 		map.put("dbId", nextDbId);
-		int update = pgAmMVP1ParamJdbcTemplate.update(sqlInsertUUID, map);
-		Map<String, Object> dbUuid = pgAmMVP1ParamJdbcTemplate.queryForMap(sqlSelectUUID_byId, map);
+		int update = pgMvpMedicalAlgoritmed1ParamJdbcTemplate.update(sqlInsertUUID, map);
+		Map<String, Object> dbUuid = pgMvpMedicalAlgoritmed1ParamJdbcTemplate.queryForMap(sqlSelectUUID_byId, map);
 		map.put("dbUuid", dbUuid);
 	}
 	/**
@@ -50,13 +50,12 @@ public class Mvp1Db {
 	 * JDBC доступ до БД через параметрезований SQL
 	 */
 	@Autowired
-	protected NamedParameterJdbcTemplate pgAmMVP1ParamJdbcTemplate;
+	protected NamedParameterJdbcTemplate pgMvpMedicalAlgoritmed1ParamJdbcTemplate;
 	/**
 	 * JDBC доступ до БД через простий SQL
 	 */
 	@Autowired
-	protected JdbcTemplate pgAmMVP1JdbcTemplate;
-
+	protected JdbcTemplate pgMvpMedicalAlgoritmed1JdbcTemplate;
 	/**
 	 * SQL select - повертає наступний ID единий для всієй БД.
 	 */
@@ -66,7 +65,7 @@ public class Mvp1Db {
 	 * @return Наступний ID единий для всієй БД.
 	 */
 	protected Integer nextDbId() {
-		Integer nextDbId = pgAmMVP1JdbcTemplate.queryForObject(sqlNextDbId, Integer.class);
+		Integer nextDbId = pgMvpMedicalAlgoritmed1JdbcTemplate.queryForObject(sqlNextDbId, Integer.class);
 		return nextDbId;
 	}
 }

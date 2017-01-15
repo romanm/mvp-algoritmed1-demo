@@ -5,21 +5,35 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
-	<bean id="dataSourcePgAmMVP1" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<!-- БД лікувального закладу -->
+	<bean id="dataSourcePgMvpMedicalAlgoritmed1" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+	primary="true"
+	>
 		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="${config.pgAmMVP1.url}" />
-		<property name="username" value="${config.pgAmMVP1.username}" />
-		<property name="password" value="${config.pgAmMVP1.password}" />
+		<property name="url" value="${config.pg_mvp_medical_algoritmed1.url}" />
+		<property name="username" value="${config.pg_mvp_medical_algoritmed1.username}" />
+		<property name="password" value="${config.pg_mvp_medical_algoritmed1.password}" />
+	</bean>
+	<bean id="pgMvpMedicalAlgoritmed1ParamJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg ref="dataSourcePgMvpMedicalAlgoritmed1"/>
+	</bean>
+	<bean id="pgMvpMedicalAlgoritmed1JdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSourcePgMvpMedicalAlgoritmed1"/>
 	</bean>
 
-	<bean id="pgAmMVP1ParamJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
-		<constructor-arg ref="dataSourcePgAmMVP1"/>
+	<!-- БД страховки -->
+	<bean id="dataSourcePgMvpInsuranceAlgoritmed1" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="${config.pg_mvp_insurance_algoritmed1.url}" />
+		<property name="username" value="${config.pg_mvp_insurance_algoritmed1.username}" />
+		<property name="password" value="${config.pg_mvp_insurance_algoritmed1.password}" />
 	</bean>
-
-	<bean id="pgAmMVP1JdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<constructor-arg ref="dataSourcePgAmMVP1"/>
+	<bean id="pgMvpInsuranceAlgoritmed1ParamJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg ref="dataSourcePgMvpInsuranceAlgoritmed1"/>
 	</bean>
-
+	<bean id="pgMvpInsuranceAlgoritmed1JdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSourcePgMvpInsuranceAlgoritmed1"/>
+	</bean>
 
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

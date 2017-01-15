@@ -1,4 +1,4 @@
-package org.algoritmed1.medic;
+package org.algoritmed1.medical;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  */
 @Controller
-public class MedicRest {
-	private static final Logger logger = LoggerFactory.getLogger(MedicRest.class);
+public class MedicalRest {
+	private static final Logger logger = LoggerFactory.getLogger(MedicalRest.class);
 
 	@GetMapping(value = "/v/medic")
 	public String  medic(Model model) {

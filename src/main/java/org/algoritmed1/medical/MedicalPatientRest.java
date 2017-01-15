@@ -1,4 +1,4 @@
-package org.algoritmed1.medic;
+package org.algoritmed1.medical;
 
 import java.security.Principal;
 import java.util.HashMap;
@@ -24,14 +24,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  */
 @Controller
-public class PatientRest extends PatientDb{
-	private static final Logger logger = LoggerFactory.getLogger(PatientRest.class);
+public class MedicalPatientRest extends MedicalPatientDb{
+	private static final Logger logger = LoggerFactory.getLogger(MedicalPatientRest.class);
 	private @Autowired WebClient webClient;
 
 	/**
 	 * SQL insert для запису нового пацієнта
 	 */
-	private @Value("${sql.insertMedicPatient}") String sqlInsertMedicPatient;
+	private @Value("${sql.insertPatient}") String sqlInsertPatient;
 
 	/**
 	 * Запис нового пацієнта в БД
@@ -49,24 +49,30 @@ public class PatientRest extends PatientDb{
 		Map<String, Object> map = new HashMap<String, Object>();
 		generateNewUuid(map);
 		map.putAll(newPatient);
-		int update = pgAmMVP1ParamJdbcTemplate.update(sqlInsertMedicPatient, map);
+		int update = pgMvpMedicalAlgoritmed1ParamJdbcTemplate.update(sqlInsertPatient, map);
+		Map<String, Object> patientById = pgMvpMedicalAlgoritmed1ParamJdbcTemplate.queryForMap(sqlSelectPatientById, map);
+		map.put("patientById", patientById);
 		webClient.hello();
-		return newPatient;
+		return map;
 	}
 	
 	/**
 	 * SQL select для зчитування всіх пацієнтів медіка
 	 */
-	private @Value("${sql.selectMedicPatient}") String sqlSelectMedicPatient;
+	private @Value("${sql.selectPatients}") String sqlSelectPatients;
+	/**
+	 * SQL select для зчитування пацієнта через ID
+	 */
+	private @Value("${sql.selectPatientById}") String sqlSelectPatientById;
 
 	/**
 	 * Зчитування всіх пацієнтів медіка
 	 * @return Map об'єкт що містить всіх пацієнтів медіка
 	 */
-	@GetMapping(value = "/r/patients")
+	@GetMapping(value = "/r/medical/patients")
 	public @ResponseBody Map<String, Object>  patients() {
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<Map<String, Object>> medicPatients = pgAmMVP1JdbcTemplate.queryForList(sqlSelectMedicPatient);
+		List<Map<String, Object>> medicPatients = pgMvpMedicalAlgoritmed1JdbcTemplate.queryForList(sqlSelectPatients);
 		map.put("medicPatients", medicPatients);
 		return map;
 	}
