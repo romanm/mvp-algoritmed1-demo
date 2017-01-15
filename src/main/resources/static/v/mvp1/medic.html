@@ -13,32 +13,25 @@
 	<div class="col-xs-7 col-sm-6 col-lg-8">
 		<fieldset>
 			<legend>Новий паціент:</legend>
-			<label>ПІБ: <input type="text" ng-model="patient.patient_pib" />
-			</label> <label>Адреса: <input type="text" ng-model="patient.patient_address" />
+			<label>ПІБ: <input type="text" ng-model="patient.patient_pib" 
+			ng-change="seekPatient()"
+			/>
+			</label> <label>Адреса: <input type="text"
+				ng-model="patient.patient_address" />
 			</label>
 			<button ng-click="saveNewPatient(patient)">OK</button>
 		</fieldset>
+		<div ng-include="'/v/mvp1/ng/patientList.html'"></div>
 	</div>
 	<div class="col-xs-5 col-sm-6 col-lg-4">
 		<fieldset>
 			<legend>Інфо:</legend>
+			{{dataInsurancePatients}}
 		</fieldset>
 	</div>
 </div>
 
-<h2>Список пацієнтів</h2>
-<table class="table">
-	<tr>
-		<th>ПІБ</th>
-		<th>Адреса</th>
-	</tr>
-	<tr ng-repeat="p in medicPatients">
-		<td>{{p.patient_pib}}</td>
-		<td>{{p.patient_address}}</td>
-	</tr>
-</table>
-
-<h2>---------</h2>
+<h2>---TODO------</h2>
 <div>{{historyTreatmentAnalysis.date}}</div>
 <span> <label>дата: <input type="text"
 		style="width: 100px;" ui-date="dateOptions"

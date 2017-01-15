@@ -59,23 +59,41 @@ public class MedicalPatientRest extends MedicalPatientDb{
 	/**
 	 * SQL select для зчитування всіх пацієнтів медіка
 	 */
-	private @Value("${sql.selectPatients}") String sqlSelectPatients;
+	private @Value("${sql.medical.selectPatients}") String sqlMedicalSelectPatients;
 	/**
 	 * SQL select для зчитування пацієнта через ID
 	 */
 	private @Value("${sql.selectPatientById}") String sqlSelectPatientById;
 
 	/**
-	 * Зчитування всіх пацієнтів медіка
+	 * Зчитування всіх пацієнтів медичної установи
 	 * @return Map об'єкт що містить всіх пацієнтів медіка
 	 */
 	@GetMapping(value = "/r/medical/patients")
 	public @ResponseBody Map<String, Object>  patients() {
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<Map<String, Object>> medicPatients = pgMvpMedicalAlgoritmed1JdbcTemplate.queryForList(sqlSelectPatients);
+		List<Map<String, Object>> medicPatients = pgMvpMedicalAlgoritmed1JdbcTemplate.queryForList(sqlMedicalSelectPatients);
 		map.put("medicPatients", medicPatients);
 		return map;
 	}
+	/**
+	 * Пошук пацієнтів в БД загальної медичної страховки
+	 * @return
+	 */
+	@GetMapping(value = "/r/medicalFromInsurance/seekPatient/{seekPatient}")
+	public @ResponseBody Map<String, Object>  medicalFromInsurancePatients(@PathVariable String seekPatient) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("seekPatient", seekPatient);
+		logger.info("---------------\n"
+				+ "/r/medicalFromInsurance/patients/{seekPatient} " + map);
+		Map<String, Object> insuranceSeekPatient = webClient.getFromUrl(configInsuranceServer + "/r/insurance/seekPatient/"
+				+ seekPatient);
+		logger.info(" ---------------\n " + insuranceSeekPatient);
+		map.put("insurancePatients", insuranceSeekPatient.get("insurancePatients"));
+		return map;
+	}
+
+	private @Value("${config.insurance.server}") String configInsuranceServer;
 
 	/**
 	 * Зчитування даних паціента з БД за його локальним ID

@@ -17,6 +17,22 @@ angular.module('medicApp', [])
 	console.log('---medicApp-----MedicCtrl--------');
 	$scope.patient = {'patient_pib':'','patient_address':''};
 
+	$scope.seekPatient = function (){
+		console.log($scope.patient.patient_pib);
+		console.log($scope.patient.patient_pib.length);
+		if($scope.patient.patient_pib.length > 1){
+			$http.get('/r/medicalFromInsurance/seekPatient/' + $scope.patient.patient_pib).then(
+				function(response) {
+					console.log(response);
+//					$scope.dataInsurancePatients = response.data.insurancePatients;
+					$scope.dataInsurancePatients = response.data;
+				}, function(response) {
+					console.log(response);
+				}
+			);
+		}
+	}
+
 	$http.get('/r/medical/patients').then(
 			function(response) {
 				console.log(response);
