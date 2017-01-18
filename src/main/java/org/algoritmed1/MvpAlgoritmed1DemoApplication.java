@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
- * Точка входу.
+ * Точка входу аплікації.
  * @author roman
  *
  */

@@ -26,6 +26,11 @@
 	<div class="col-xs-5 col-sm-6 col-lg-4">
 		<fieldset>
 			<legend>Інфо:</legend>
+			<ul>
+				<li
+					ng-repeat="insurancePatient in dataInsurancePatients.insurancePatients">
+					{{insurancePatient.patient_pib}}</li>
+			</ul>
 			{{dataInsurancePatients}}
 		</fieldset>
 	</div>
