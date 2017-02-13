@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.algoritmed1.tmp.WebClient;
+import org.algoritmed1.util.WebClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class MedicalPatientRest extends MedicalPatientDb{
 	private @Value("${sql.insertPatient}") String sqlInsertPatient;
 
 	/**
-	 * Запис нового пацієнта в БД
+	 * Запис нового пацієнта в БД. TODO:після логін /v забрати
 	 * @param newPatient
 	 * @param userPrincipal
 	 * @return
